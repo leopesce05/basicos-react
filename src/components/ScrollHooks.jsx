@@ -7,7 +7,7 @@ function ScrollHooks() {
     const [scrollY , setScrollY ] = useState(0);
 
     useEffect(() => {
-        console.log("Fase de actualizacion")
+        //console.log("Movimiento del scroll")
 
         const detectarScroll=()=>{
             setScrollY(window.pageYOffset)
@@ -15,11 +15,26 @@ function ScrollHooks() {
 
         window.addEventListener("scroll",detectarScroll)
 
+        return () => {
+            window.removeEventListener("scroll",detectarScroll)
+            //console.log("Fase de Desmontaje")
+        }
+
+    },[scrollY]);
+
+    useEffect(() => {
+        // console.log("Fase de actualizacion")
     });
 
     useEffect(() => {
-        console.log("Fase de montaje")
+        //console.log("Fase de montaje")
     }, []);
+
+    useEffect(() => {
+        
+    }, []);
+
+
 
     return ( 
         <>
