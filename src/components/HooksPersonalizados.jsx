@@ -1,28 +1,23 @@
-import React,{useState,useEffect} from 'react';
-import {useFetch} from '../hooks/useFetch.js'
+import React from "react";
+import { useFetch } from "../hooks/useFetch";
 
-// function Pokemon({avatar,name}){
+export default function HooksPersonalizados() {
+  let url = "https://pokeapi.co/api/v2/pokemon/";
+  //url = "https://jsonplaceholder.typicode.com/users";
+  //console.log(useFetch());
 
-//     return(
-//         <figure>
-//             <img src={avatar} alt={name} />
-//             <figcaption>{name}</figcaption>
-//         </figure>
-//     );
-// }
+  let { data, isPending, error } = useFetch(url);
 
-function HooksPersonalizador() {
-    const [pokemons, setPokemons] = useState(null);
-    
-    let url = "https://pokeapi.co/api/v2/pokemon";
-
-
-    return ( 
-        <>
-        <h2>Hooks Personalizados</h2>
-        
-        </>
-     );
+  return (
+    <>
+      <h2>Hooks Personalizados</h2>
+      <h3>{JSON.stringify(isPending)}</h3>
+      <h3>
+        <mark>{JSON.stringify(error)}</mark>
+      </h3>
+      <pre style={{ whiteSpace: "pre-wrap" }}>
+        <code style={{ wordBreak: "break-word" }}>{JSON.stringify(data)}</code>
+      </pre>
+    </>
+  );
 }
-
-export default HooksPersonalizador;
